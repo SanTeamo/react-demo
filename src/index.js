@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Game from './game/game'
+import Game from './game/game';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
