@@ -1,10 +1,10 @@
 import React from 'react';
-import './game.css';
+import styles from './game.module.css';
 
 const Square = function Square(props) {
   const { onClick, value } = props;
   return (
-    <button className="square" onClick={onClick} type="button">
+    <button className={styles.square} onClick={onClick} type="button">
       {value}
     </button>
   );
@@ -24,17 +24,17 @@ const Board = function Board(props) {
   }
   return (
     <div>
-      <div className="board-row">
+      <div className={styles['board-row']}>
         {renderSquare(0)}
         {renderSquare(1)}
         {renderSquare(2)}
       </div>
-      <div className="board-row">
+      <div className={styles['board-row']}>
         {renderSquare(3)}
         {renderSquare(4)}
         {renderSquare(5)}
       </div>
-      <div className="board-row">
+      <div className={styles['board-row']}>
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
@@ -128,11 +128,11 @@ class Game extends React.Component {
       status = `Next player: ${xIsNext ? 'X' : 'O'}`;
     }
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className={styles.game}>
+        <div className={styles['game-info']}>
           <Board squares={current.squares} onClick={(i) => this.handleClick(i)} />
         </div>
-        <div className="game-info">
+        <div className={styles['game-info']}>
           <div>{status}</div>
           <ol>{moves}</ol>
         </div>
