@@ -1,5 +1,5 @@
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import React from 'react';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
 const ActiveLink = function CustomLink({ children, to, ...props }) {
   const resolved = useResolvedPath(to);
