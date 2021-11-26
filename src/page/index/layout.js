@@ -1,12 +1,12 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
+// import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const MyLayout = function MyLayout(props) {
-  const { menuItems } = props;
+  const { menu } = props;
   return (
     <Layout style={{ width: '100%', height: '100%' }}>
       <Sider
@@ -20,21 +20,7 @@ const MyLayout = function MyLayout(props) {
         }}
       >
         <div />
-        <Menu mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            nav 2
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
-            nav 3
-          </Menu.Item>
-          <Menu.Item key="4" icon={<UserOutlined />}>
-            nav 4
-          </Menu.Item>
-          {menuItems}
-        </Menu>
+        {menu}
       </Sider>
       <Layout>
         <Header style={{ padding: 0 }} />

@@ -1,26 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import pages from './pages/pages';
-import ActiveLink from '../component/links/active-link';
 import ErrorPage404 from '../page/error-page/404';
 import MyLayout from '../page/index/layout';
 import Home from '../page/index/home';
 
+const lazyLoad = function lazyLoad(Component) {
+  return (
+    <React.Suspense fallback={<div>loading</div>}>
+      <Component />
+    </React.Suspense>
+  );
+};
+
 const menuItems = [];
 const routes = [];
 pages.forEach((p) => {
-  const { path, name } = p;
+  const { path, component, name } = p;
   menuItems.push(
     <Menu.Item key={path}>
-      <ActiveLink to={path}>{name}</ActiveLink>
+      <Link to={path}>{name}</Link>
     </Menu.Item>
   );
-  routes.push(<Route key={path} path={path} element={<p.element />} />);
+  routes.push(<Route key={path} path={path} element={lazyLoad(component)} />);
 });
 
+const menu = <Menu mode="inline">{menuItems}</Menu>;
+
 const RouteIndex = function RouteIndex() {
-  const layout = <MyLayout menuItems={menuItems} s={1} />;
+  const layout = <MyLayout menu={menu} />;
   return (
     <Router>
       <Routes>
