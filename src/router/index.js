@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Menu } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import pages from './pages/pages';
 import ErrorPage404 from '../page/error-page/404';
 import MyLayout from '../page/index/layout';
@@ -19,17 +20,15 @@ const routes = [];
 pages.forEach((p) => {
   const { path, component, name } = p;
   menuItems.push(
-    <Menu.Item key={path}>
+    <Menu.Item key={path} icon={<UserOutlined />}>
       <Link to={path}>{name}</Link>
     </Menu.Item>
   );
   routes.push(<Route key={path} path={path} element={lazyLoad(component)} />);
 });
 
-const menu = <Menu mode="inline">{menuItems}</Menu>;
-
 const RouteIndex = function RouteIndex() {
-  const layout = <MyLayout menu={menu} />;
+  const layout = <MyLayout menuItems={menuItems} />;
   return (
     <Router>
       <Routes>
