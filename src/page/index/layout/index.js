@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import Clock from '../../../component/clock';
+import RouterBreadcrumb from '../../../component/layout/router-breadcrumb';
 import layoutStyles from './layout.module.css';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -43,6 +44,7 @@ class MyLayout extends React.Component {
               <Clock style={{ position: 'absolute', right: '18px', fontSize: '18px' }} />
             </div>
           </Header>
+          <RouterBreadcrumb />
           <Content style={{ margin: '24px 16px 0', backgroundColor: '#fff' }}>
             <div style={{ padding: 24, minHeight: 360 }}>
               <Outlet />

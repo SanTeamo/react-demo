@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import pages from './pages/pages';
+import views from './pages/views';
 import ErrorPage404 from '../page/error-page/404';
-import MyLayout from '../page/index/layout';
+import ErrorPage500 from '../page/error-page/500';
 import Home from '../page/index/home';
+import MyLayout from '../page/index/layout';
 
 const lazyLoad = function lazyLoad(Component) {
   return (
@@ -17,10 +18,10 @@ const lazyLoad = function lazyLoad(Component) {
 
 const menuItems = [];
 const routes = [];
-pages.forEach((p) => {
-  const { path, component, name } = p;
+views.forEach((p) => {
+  const { path, component, name, icon } = p;
   menuItems.push(
-    <Menu.Item key={path} icon={<UserOutlined />}>
+    <Menu.Item key={path} icon={icon || <UserOutlined />}>
       <Link to={path}>{name}</Link>
     </Menu.Item>
   );
@@ -36,6 +37,7 @@ const RouteIndex = function RouteIndex() {
           <Route index element={<Home />} />
           {routes}
           <Route path="/404" element={<ErrorPage404 />} />
+          <Route path="/500" element={<ErrorPage500 />} />
           <Route path="*" element={<ErrorPage404 />} />
         </Route>
       </Routes>
